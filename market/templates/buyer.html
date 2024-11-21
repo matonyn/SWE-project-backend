@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Farmer's Market - Buyer Profile</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+        <!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+							<!-- Logo -->
+                            <a href="{% url 'admin_panel' %}" class="logo"> <!-- change to the name of the main page file -->
+                                <span class="symbol"><img src="{% static 'assets/images/logo.svg' %}" alt="" /></span><span class="title">Farmer's Market by Team D</span>
+                            </a>
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+                            </div>
+                        </header>
+                <!-- Menu -->
+                <nav id="menu">
+                    <h2>Menu</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li> <!-- change to the name of the main page file -->
+                        <li><a href="generic.html">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
+                        <li><a href="generic.html">Consequat dolor</a></li> <!-- change later -->
+                        <li><a href="elements.html">Elements</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Main -->
+                <div id="main">
+                    <div class="inner">
+                        <h1>Buyer Profile</h1>
+                        <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Description</th>
+                                            <th>Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Buyer ID</td>
+                                            <td>{{ farmer_id }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Buyer Name</td> <!--  (i pressed edit button so it changed to this textbox) -->
+                                            <td><div class="col-6 col-12-xsmall">
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="{{ farmer_name }}" />
+											</div></td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Buyer Rating</td>
+                                            <td>{{ farmer_rating }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Orders</td>
+                                            <td>{{ total_orders }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delivery Preference</td>
+                                            <td>{{ prefferred_delivery_type }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Activty Status</td>
+                                            <td>{{ activity_status }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>{{ email }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone</td>
+                                            <td>{{ mobile_phone }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Telegram</td>
+                                            <td>{{ telegram_id }}</td>
+                                            <td><ul class="actions">
+                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                            </ul></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                        <ul class="actions">
+                            <a href="{% url 'update_status' user.user_id %}" class="button primary">Delete profile</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+            <script src="{% static 'assets/js/browser.min.js' %}"></script>
+            <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+            <script src="{% static 'assets/js/util.js' %}"></script>
+            <script src="{% static 'assets/js/main.js' %}"></script>
+    </body>
+</html>

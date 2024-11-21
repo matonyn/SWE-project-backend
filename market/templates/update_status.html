@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Farmer's Market - Admin Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+        <!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+							<!-- Logo -->
+                            <a href="{% url 'admin_panel' %}" class="logo"> <!-- change to the name of the main page file -->
+                                <span class="symbol"><img src="{% static 'assets/images/logo.svg' %}" alt="" /></span><span class="title">Farmer's Market by Team D</span>
+                            </a>
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+                            </div>
+                        </header>
+                <!-- Menu -->
+                <nav id="menu">
+                    <h2>Menu</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li> <!-- change to the name of the main page file -->
+                        <li><a href="generic.html">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
+                        <li><a href="generic.html">Consequat dolor</a></li> <!-- change later -->
+                        <li><a href="elements.html">Elements</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Main -->
+                <div id="main">
+                    <div class="inner">
+                        <h1>Update Status of Farmer</h1>
+                        {% if farmer %}
+                        <h2>{{ farmer.farmer_name }}</h2>
+                        <div class="table-wrapper">
+                                <table>
+                                    <tr>
+                                        <th>Farmer Name</th>
+                                        <th>Farmer Phone</th>
+                                        <th>Farmer Niche</th>
+                                        <th>Farm Name</th>
+                                        <th>Farm Size</th>
+                                        <th>Farm Address</th>
+                                    </tr>
+                                        <tr>
+                                            <td>{{ farmer.farmer_name}}</td>
+                                            <td>{{ farmer.farmer_number }}</td>
+                                            <td>{{ farmer.niche }}</td>
+                                            <td>{{ farmer.farm_name }}</td>
+                                            <td>{{ farmer.farm_size }}</td>
+                                            <td>{{ farmer.farm_address }}</td>
+                                        </tr>
+                                </table>
+                                <div class="col-6 col-12-medium">
+                                    <ul class="actions">
+                                        <li><a href="#" class="button primary">Approve</a></li>
+                                        <li><a href="#" class="button">Reject</a></li>
+                                    </ul>
+                                </div>
+                                <hr />
+                                <form method="post" action="#">
+                                    <div class="row gtr-uniform">
+                                        <div class="col-12">
+                                            <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <ul class="actions">
+                                                <li><input type="submit" value="Send Message" class="primary" /></li>
+                                                <li><input type="reset" value="Reset" /></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>                        
+                    </div>
+                </div>
+                {% else %}
+                    <p>No farmer found</p>
+                {% endif %}
+            </div>
+            <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+            <script src="{% static 'assets/js/browser.min.js' %}"></script>
+            <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+            <script src="{% static 'assets/js/util.js' %}"></script>
+            <script src="{% static 'assets/js/main.js' %}"></script>
+    </body>
+</html>

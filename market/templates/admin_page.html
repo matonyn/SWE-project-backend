@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Farmer's Market - Admin Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        {% load static %}
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+        <!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+							<!-- Logo -->
+								<a href="{% url 'admin_panel' %}" class="logo"> <!-- change to the name of the main page file -->
+                                    <span class="symbol"><img src="{% static 'assets/images/logo.svg' %}" alt="" /></span><span class="title">Farmer's Market by Team D</span>
+								</a>
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+                            </div>
+                        </header>
+                <!-- Menu -->
+                <nav id="menu">
+                    <h2>Menu</h2>
+                    <ul>
+                        <li><a href="{% url 'admin_panel' %}">Home</a></li> <!-- change to the name of the main page file -->
+                        <li><a href="{% url 'elements'%}">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
+                        <li><a href="{% url 'elements' %}">Consequat dolor</a></li> <!-- change later -->
+                        <li><a href="{% url 'elements' %}">Elements</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Main -->
+                <div id="main">
+                    <div class="inner">
+                        <h1>Admin Panel</h1>
+                        <!-- create a specific section for "Pending Farmers,"
+                        where the admin can view detailed profiles of farmers, including their
+                        personal information, farm size, and location-->
+                        <h2>Pending Farmers</h2>
+                        <div class="table-wrapper">
+                            {% if farmers %}
+                                <table>
+                                    <tr>
+                                        <th>Farmer Name</th>
+                                        <th>Farmer Phone</th>
+                                        <th>Farmer Niche</th>
+                                        <th>Farm Name</th>
+                                        <th>Farm Size</th>
+                                        <th>Farm Address</th>
+                                        <th>Farmer Page</th>
+                                    </tr>
+                                    {% for farmer in farmers %}
+                                        <tr>
+                                            <td>{{ farmer.farmer_name}}</td>
+                                            <td>{{ farmer.farmer_number }}</td>
+                                            <td>{{ farmer.niche }}</td>
+                                            <td>{{ farmer.farm_name }}</td>
+                                            <td>{{ farmer.farm_size }}</td>
+                                            <td>{{ farmer.farm_address }}</td>
+                                            <td>
+                                                <p>{{ farmer.farmer_status }}</p>
+                                                <ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Update</a>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% else %}
+                                <p>No pending farmers to approve</p>
+                            {% endif %}
+                        </div>
+                        <!-- Admins can approve or reject
+                        farmers with a single click. Rejection should prompt the admin to provide a
+                        reason, which will be sent to the farmer as feedback. Approving a farmer
+                        activates their account and grants them access to product listing features-->
+
+                        <!-- The admin should be able to view, edit, or delete any user account (Farmers
+                        or Buyers). Admins should have the ability to disable or re-enable accounts
+                        in case of suspicious activity-->
+                        <hr />
+                        <hr />
+                        <h2>All Users</h2>
+                        <form method="get" action="{% url 'search' %}">
+                            <input type="text" name="query" placeholder="Search by Name" value="{{ query|default:'' }}" />
+                            <br>
+                            <button type="submit" class="button primary">Search</button>
+                        </form>
+                        <br>
+                        <br>
+                        <div class="table-wrapper">
+                            {% if users %}
+                                <table>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>User Type</th>
+                                        <th>User Name</th>
+                                        <th>User Phonenumber</th>
+                                        <th>User Activity Status</th>
+                                        <th>User Page</th>
+                                    </tr>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td>{{ user.user_id }}</td>
+                                            <td>{{ user.user_type }}</td>
+                                            <td>{{ user.user_name }}</td>
+                                            <td>{{ user.user_number }}</td>
+                                            <td>
+                                                <p>{{ user.activity_status }}</p>
+                                                <ul class="actions">
+                                                    {% if user.user_id %}
+                                                        {%if user.user_type == 'Buyer' %}
+                                                            <a href="{% url 'change_buyer_status' user.user_id %}" class="button primary">Change</a>
+                                                        {% else %}
+                                                            <a href="{% url 'change_farmer_status' user.user_id %}" class="button primary">Change</a>
+                                                        {% endif %}
+                                                      {% else %}
+                                                        <span class="button primary disabled">Change</span>
+                                                     {% endif %}
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <p>{{ user.userstatus }}</p>
+                                                <ul class="actions">
+                                                    {% if user.usertype == 'Buyer' %}
+                                                        <a href="{% url 'elements'  %}" class="button primary">View</a>
+                                                    {% else%}
+                                                        <a href="{% url 'elements'%}" class="button primary">View</a>
+                                                    {% endif %}
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% else %}
+                                <p>No users on the platform</p>
+                            {% endif %}
+                        </div>                        
+                    </div>
+                
+                </div>
+            </div>
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/browser.min.js' %}"></script>
+        <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+    </body>
+</html>
