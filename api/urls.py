@@ -5,14 +5,8 @@ from .views import (
     ProductPhotoDeleteView, ProductDescriptionDeleteView, 
     BuyerRegistrationView, FarmerRegistrationView
 )
-from rest_framework_simplejwt.views import (
-TokenObtainPairView,
-TokenRefreshView,
-)
 
 urlpatterns = [
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/buyer/products/', ProductCategoryView.as_view(), name='buyer-products'),
     path('api/buyer/product/<int:product_id>/', ProductDetailView.as_view(), name='buyer-product-detail'),
     path('api/farmer/products/', FarmerProductCategoryView.as_view(), name='farmer-products'),

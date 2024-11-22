@@ -4,7 +4,6 @@ from rest_framework import status
 from market .models import Product, Category
 from .serializers import CategorySerializer, ProductSerializer, BuyerRegistrationSerializer, FarmerRegistrationSerializer
 from rest_framework.parsers import JSONParser
-from rest_framework.permissions import IsAuthenticated
 
 class ProductCategoryView(APIView):
     def get(self, request):
