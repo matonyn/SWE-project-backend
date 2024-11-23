@@ -30,10 +30,9 @@
                 <nav id="menu">
                     <h2>Menu</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li> <!-- change to the name of the main page file -->
-                        <li><a href="generic.html">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
-                        <li><a href="generic.html">Consequat dolor</a></li> <!-- change later -->
-                        <li><a href="elements.html">Elements</a></li>
+                        
+                        <li><a href="{% url 'admin_panel' %}">Home</a></li> <!-- change to the name of the main page file -->
+                        <li><a href="{% url 'login'%}">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
                     </ul>
                 </nav>
 
@@ -53,74 +52,77 @@
                                     <tbody>
                                         <tr>
                                             <td>Buyer ID</td>
-                                            <td>{{ farmer_id }}</td>
+                                            <td><input type="text" name="buyer_id" id="buyer_id" value="{{ buyer.buyer_id }}" placeholder="Buyer ID" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
-                                            <td>Buyer Name</td> <!--  (i pressed edit button so it changed to this textbox) -->
-                                            <td><div class="col-6 col-12-xsmall">
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="{{ farmer_name }}" />
-											</div></td>
+                                            <td>Buyer Name</td>
+                                            <td><input type="text" name="user_name" id="user_name" value="{{ buyer.user_name }}" placeholder="Buyer Name" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
                                             <td>Buyer Rating</td>
-                                            <td>{{ farmer_rating }}</td>
+                                            <td><input type="text" name="buyer_rating" id="buyer_rating" value="{{ buyer.buyer_rating }}" placeholder="Buyer Rating" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
                                             <td>Total Orders</td>
-                                            <td>{{ total_orders }}</td>
+                                            <td><input type="text" name="total_orders" id="total_orders" value="{{ buyer.total_orders }}" placeholder="Total Orders" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
                                             <td>Delivery Preference</td>
-                                            <td>{{ prefferred_delivery_type }}</td>
+                                            <td><input type="text" name="prefferred_delivery_type" id="prefferred_delivery_type" value="{{ buyer.prefferred_delivery_type }}" placeholder="Delivery Preference" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
-                                            <td>Activty Status</td>
-                                            <td>{{ activity_status }}</td>
+                                            <td>Activity Status</td>
+                                            <td><input type="text" name="activity_status" id="activity_status" value="{{ buyer.activity_status }}" placeholder="Activity Status" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
                                             <td>Email</td>
-                                            <td>{{ email }}</td>
+                                            <td><input type="text" name="email" id="email" value="{{ buyer.email }}" placeholder="Email" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
                                             <td>Phone</td>
-                                            <td>{{ mobile_phone }}</td>
+                                            <td><input type="text" name="mobile_phone" id="mobile_phone" value="{{ buyer.mobile_phone }}" placeholder="Phone" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                         <tr>
                                             <td>Telegram</td>
-                                            <td>{{ telegram_id }}</td>
+                                            <td><input type="text" name="telegram_id" id="telegram_id" value="{{ buyer.telegram_id }}" placeholder="Telegram" /></td>
                                             <td><ul class="actions">
-                                                <a href="{% url 'update_status' user.user_id %}" class="button primary">Edit</a>
+                                                <a href="" class="button primary">Edit</a>
                                             </ul></td>
                                         </tr>
                                     </tbody>
                                 </table>
                         </div>
                         <ul class="actions">
-                            <a href="{% url 'update_status' user.user_id %}" class="button primary">Delete profile</a>
+                            {% if buyer.buyer_id %}
+                                <a href="{% url 'delete_buyer' buyer.buyer_id %}" class="button primary">Delete profile</a>
+                            {% else %}
+                                <a href="#" class="button primary disabled">Delete profile</a>
+                            {% endif %}
+                        </ul>
                         </ul>
                     </div>
                 </div>

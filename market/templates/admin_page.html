@@ -31,9 +31,7 @@
                     <h2>Menu</h2>
                     <ul>
                         <li><a href="{% url 'admin_panel' %}">Home</a></li> <!-- change to the name of the main page file -->
-                        <li><a href="{% url 'elements'%}">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
-                        <li><a href="{% url 'elements' %}">Consequat dolor</a></li> <!-- change later -->
-                        <li><a href="{% url 'elements' %}">Elements</a></li>
+                        <li><a href="{% url 'login'%}">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
                     </ul>
                 </nav>
 
@@ -105,7 +103,7 @@
                                         <th>User Name</th>
                                         <th>User Phonenumber</th>
                                         <th>User Activity Status</th>
-                                        <th>User Page</th>
+                                        <th>Edit/View</th>
                                     </tr>
                                     {% for user in users %}
                                         <tr>
@@ -115,26 +113,18 @@
                                             <td>{{ user.user_number }}</td>
                                             <td>
                                                 <p>{{ user.activity_status }}</p>
+                                            </td>
+                                            <td>
                                                 <ul class="actions">
                                                     {% if user.user_id %}
                                                         {%if user.user_type == 'Buyer' %}
-                                                            <a href="{% url 'change_buyer_status' user.user_id %}" class="button primary">Change</a>
+                                                            <a href="{% url 'change_buyer_status' user.user_id %}" class="button primary">View</a>
                                                         {% else %}
-                                                            <a href="{% url 'change_farmer_status' user.user_id %}" class="button primary">Change</a>
+                                                            <a href="{% url 'change_farmer_status' user.user_id %}" class="button primary">View</a>
                                                         {% endif %}
                                                       {% else %}
-                                                        <span class="button primary disabled">Change</span>
+                                                        <span class="button primary disabled">View</span>
                                                      {% endif %}
-                                                </ul>
-                                            </td>
-                                            <td>
-                                                <p>{{ user.userstatus }}</p>
-                                                <ul class="actions">
-                                                    {% if user.usertype == 'Buyer' %}
-                                                        <a href="{% url 'elements'  %}" class="button primary">View</a>
-                                                    {% else%}
-                                                        <a href="{% url 'elements'%}" class="button primary">View</a>
-                                                    {% endif %}
                                                 </ul>
                                             </td>
                                         </tr>

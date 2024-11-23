@@ -30,10 +30,8 @@
                 <nav id="menu">
                     <h2>Menu</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li> <!-- change to the name of the main page file -->
-                        <li><a href="generic.html">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
-                        <li><a href="generic.html">Consequat dolor</a></li> <!-- change later -->
-                        <li><a href="elements.html">Elements</a></li>
+                        <li><a href="{% url 'admin_panel' %}">Home</a></li> <!-- change to the name of the main page file -->
+                        <li><a href="{% url 'login'%}">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
                     </ul>
                 </nav>
 
@@ -64,8 +62,18 @@
                                 </table>
                                 <div class="col-6 col-12-medium">
                                     <ul class="actions">
-                                        <li><a href="#" class="button primary">Approve</a></li>
-                                        <li><a href="#" class="button">Reject</a></li>
+                                        <li>
+                                            <form method="post" action="{% url 'approve_farmer' farmer.farmer_id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="button primary">Approve</button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form method="post" action="{% url 'reject_farmer' farmer.farmer_id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="button">Reject</button>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </div>
                                 <hr />

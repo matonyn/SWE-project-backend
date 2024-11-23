@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Farmer, Product, Buyer, BuyerContactData, ContactData, Delivery, DeliveryAddresses, FarmContactData, Farm, Includes, Orders, OrderingAddresses, Payment, SoldTo, Category
+from .models import Farmer, Product, Buyer, BuyerContactData, ContactData, Delivery, DeliveryAddresses, FarmContactData, Farm, Includes, Orders, OrderingAddresses, Payment, SoldTo, Category, Admin
 
 admin.site.register(Farmer)
 admin.site.register(Product)
@@ -19,3 +19,4 @@ admin.site.register(OrderingAddresses)
 admin.site.register(Payment)
 admin.site.register(SoldTo)
 admin.site.register(Category)
+admin.site.register(Admin)

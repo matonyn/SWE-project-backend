@@ -33,7 +33,7 @@ USE_TZ = True
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ec2-34-241-100-105.eu-west-1.compute.amazonaws.com', 'localhost', '127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True
@@ -102,20 +102,6 @@ DATABASES = {
         'HOST': 'swe-db.cvoaq0wu67ti.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
         }
-
-#     'default': {
-#         'ENGINE': 'mysql.connector.django',
-#         'NAME': 'FarmerMarket',
-#         'USER': 'admin',
-#         'PASSWORD': 'Madina2005!',
-#         'HOST': 'swe-db.cvoaq0wu67ti.us-east-1.rds.amazonaws.com',
-#         'PORT': '3306','ENGINE': 'mysql.connector.django',
-#         '        'NAME': 'FarmerMarket',
-#         '        'USER': 'root',
- #         '       'PASSWORD': 'Madina2005!',
- #         '       'HOST': 'localhost',
- #         '       'PORT': '3306',
-#     }
  }
 
 
@@ -147,7 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = 'home/ubuntu/SWE-project-backend/farmers/staticfiles'
 
 
 

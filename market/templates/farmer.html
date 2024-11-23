@@ -30,10 +30,9 @@
                 <nav id="menu">
                     <h2>Menu</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li> <!-- change to the name of the main page file -->
-                        <li><a href="generic.html">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
-                        <li><a href="generic.html">Consequat dolor</a></li> <!-- change later -->
-                        <li><a href="elements.html">Elements</a></li>
+                        
+                        <li><a href="{% url 'admin_panel' %}">Home</a></li> <!-- change to the name of the main page file -->
+                        <li><a href="{% url 'login'%}">Log into Your Account</a></li> <!-- change to the naem of the login page file -->
                     </ul>
                 </nav>
 
@@ -52,89 +51,114 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Farmer ID</td>
-                                            <td>{{ farmer.farmer_id }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Farmer Name</td> <!--  (i pressed edit button so it changed to this textbox) -->
-                                            <td><div class="col-6 col-12-xsmall">
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="{{ farmer.farmer_name }}" />
-											</div></td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Farmer Niche</td>
-                                            <td>{{ farmer.niche }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total Sold</td>
-                                            <td>{{ farmer.total_sold }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Farmer Rating</td>
-                                            <td>{{ farmer.farmer_rating }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Farmer Location</td>
-                                            <td>{{ farmer.farmer_location }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Farmer Status</td>
-                                            <td>{{ farmer.farmer_status }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Activity Status</td>
-                                            <td>{{ farmer.activity_status }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td>{{ farmer.email }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Phone</td>
-                                            <td>{{ farmer.mobile_phone }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Telegram</td>
-                                            <td>{{ farmer.telegram_id }}</td>
-                                            <td><ul class="actions">
-                                                <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
-                                            </ul></td>
-                                        </tr>
+                                            <tr>
+                                                <td>Farmer ID</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="farmer_id" id="farmer_id" value="{{ farmer.farmer_id }}" placeholder="Farmer ID" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Farmer Name</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="farmer_name" id="farmer_name" value="{{ farmer.farmer_name }}" placeholder="Farmer Name" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Farmer Niche</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="niche" id="niche" value="{{ farmer.niche }}" placeholder="Farmer Niche" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Sold</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="total_sold" id="total_sold" value="{{ farmer.total_sold }}" placeholder="Total Sold" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Farmer Rating</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="farmer_rating" id="farmer_rating" value="{{ farmer.farmer_rating }}" placeholder="Farmer Rating" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Farmer Location</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="farmer_location" id="farmer_location" value="{{ farmer.farmer_location }}" placeholder="Farmer Location" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Farmer Status</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="farmer_status" id="farmer_status" value="{{ farmer.farmer_status }}" placeholder="Farmer Status" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Activity Status</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="activity_status" id="activity_status" value="{{ farmer.activity_status }}" placeholder="Activity Status" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="email" id="email" value="{{ farmer.email }}" placeholder="Email" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="mobile_phone" id="mobile_phone" value="{{ farmer.mobile_phone }}" placeholder="Phone" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Telegram</td>
+                                                <td><div class="col-6 col-12-xsmall">
+                                                    <input type="text" name="telegram_id" id="telegram_id" value="{{ farmer.telegram_id }}" placeholder="Telegram" />
+                                                </div></td>
+                                                <td><ul class="actions">
+                                                    <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Edit</a>
+                                                </ul></td>
+                                            </tr>
                                     </tbody>
                                 </table>
                         </div>
                         <ul class="actions">
-                            <a href="{% url 'update_status' farmer.farmer_id %}" class="button primary">Delete profile</a>
+                            {% if farmer.farmer_id %}
+                            <a href="{% url 'delete_farmer' farmer.farmer_id %}" class="button primary">Delete profile</a>
+                            {% else %}
+                                <a href="#" class="button primary disabled">Delete profile</a>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

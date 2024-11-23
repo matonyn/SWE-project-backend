@@ -113,7 +113,8 @@ class Farmer(models.Model):
     contact_dataid = models.IntegerField(db_column='Contact_dataID', blank=True, null=True)
     farmer_status = models.CharField(db_column='FarmerStatus', max_length=255, blank=True, null=True)
     activity_status = models.IntegerField(db_column='ActivityStatus', blank=True, null=True)
-
+    location = models.CharField(db_column='Location', max_length=255, blank=True, null=True)
+    
     class Meta:
         managed = False
         db_table = 'Farmer'
