@@ -4,14 +4,18 @@ from rest_framework import status
 from market .models import Product, Category
 from .serializers import CategorySerializer, ProductSerializer, BuyerRegistrationSerializer, FarmerRegistrationSerializer
 from rest_framework.parsers import JSONParser
+from rest_framework.permissions import AllowAny
 
 class ProductCategoryView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         categories = Category.objects.prefetch_related('product_set')
         serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ProductDetailView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request, product_id):
         try:
             product = Product.objects.get(product_id=product_id)
@@ -21,6 +25,7 @@ class ProductDetailView(APIView):
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class FarmerProductCategoryView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         categories = Category.objects.prefetch_related('product_set')
         serializer = CategorySerializer(categories, many=True)
@@ -29,7 +34,8 @@ class FarmerProductCategoryView(APIView):
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class ProductCreateView(APIView):
-    parser_classes = [MultiPartParser, FormParser] 
+    parser_classes = [MultiPartParser, FormParser]
+    permission_classes = [AllowAny] 
 
     def post(self, request):
         data = JSONParser().parse(request)
@@ -40,6 +46,7 @@ class ProductCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProductUpdateView(APIView):
+    permission_classes = [AllowAny]
     def put(self, request, product_id, *args, **kwargs):
         try:
             data = JSONParser().parse(request)
@@ -53,6 +60,7 @@ class ProductUpdateView(APIView):
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class ProductDeleteView(APIView):
+    permission_classes = [AllowAny]
     def delete(self, request, product_id):
         try:
             product = Product.objects.get(product_id=product_id)
@@ -62,6 +70,7 @@ class ProductDeleteView(APIView):
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class ProductPhotoDeleteView(APIView):
+    permission_classes = [AllowAny]
     def delete(self, request, product_id):
         try:
             product = Product.objects.get(product_id=product_id)
@@ -72,6 +81,7 @@ class ProductPhotoDeleteView(APIView):
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class ProductDescriptionDeleteView(APIView):
+    permission_classes = [AllowAny]
     def delete(self, request, product_id):
         try:
             product = Product.objects.get(product_id=product_id)
@@ -82,6 +92,7 @@ class ProductDescriptionDeleteView(APIView):
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class BuyerRegistrationView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         data = JSONParser().parse(request)
         serializer = BuyerRegistrationSerializer(data=request.data)
@@ -91,6 +102,7 @@ class BuyerRegistrationView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class FarmerRegistrationView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         data = JSONParser().parse(request)
         serializer = FarmerRegistrationSerializer(data=request.data)
