@@ -3,7 +3,13 @@
 
 This repository contains the backend implementation for our Software Engineering project. 
 
+## 🚀 Technologies Used
 
+- Backend Framework: Django
+- Database: MySQL hosted on AWS RDS Database
+- APIs: RESTful APIs for seamless communication with mobile app
+- Hosting: hosted on ```http://ec2-3-252-86-187.eu-west-1.compute.amazonaws.com:8000/``` using AWS EC2
+- 
 ## Installation
 
 Install SWE-project-backend with git
@@ -57,13 +63,6 @@ Run the development server:
 
 Access the application at ``` http://127.0.0.1:8000/.```
 
-
-## 🚀 Technologies Used
-
-- Backend Framework: Django
-- Database: MySQL hosted on AWS RDS Database
-- APIs: RESTful APIs for seamless communication with mobile app
-- Hosting: hosted on ```http://ec2-3-252-86-187.eu-west-1.compute.amazonaws.com:8000/``` using AWS EC2
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
