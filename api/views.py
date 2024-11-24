@@ -38,36 +38,41 @@ class ProductCreateView(APIView):
     permission_classes = [AllowAny] 
 
     def post(self, request):
-        data = JSONParser().parse(request)
-        serializer = self.get_serializer(data=request.data)
+        data = request.data
+        serializer = ProductSerializer(data=data)  
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class ProductUpdateView(APIView):
     permission_classes = [AllowAny]
+    
     def put(self, request, product_id, *args, **kwargs):
         try:
-            data = JSONParser().parse(request)
-            product = Product.objects.get(product_id=product_id)
-            serializer = ProductSerializer(product, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
+            product = Product.objects.get(product_id=product_id)  # Retrieve the product
+            serializer = ProductSerializer(product, data=request.data)  # Pass data for update
+            
+            if serializer.is_valid():  # Validate the serializer
+                serializer.save()  # Save the updated product
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
         except Product.DoesNotExist:
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class ProductDeleteView(APIView):
     permission_classes = [AllowAny]
+
     def delete(self, request, product_id):
         try:
-            product = Product.objects.get(product_id=product_id)
-            product.delete()
+            product = Product.objects.get(product_id=product_id)  # Try to find the product
+            product.delete()  # Delete the product
             return Response({"message": "Product deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
-        except Product.DoesNotExist:
+        except Product.DoesNotExist:  # If the product does not exist
             return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+
 
 class ProductPhotoDeleteView(APIView):
     permission_classes = [AllowAny]
@@ -93,19 +98,20 @@ class ProductDescriptionDeleteView(APIView):
 
 class BuyerRegistrationView(APIView):
     permission_classes = [AllowAny]
+    
     def post(self, request):
-        data = JSONParser().parse(request)
-        serializer = BuyerRegistrationSerializer(data=request.data)
+        serializer = BuyerRegistrationSerializer(data=request.data)  # DRF automatically parses the data
         if serializer.is_valid():
             serializer.save()  # Save buyer information to the database
             return Response({"message": "Buyer registered successfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class FarmerRegistrationView(APIView):
     permission_classes = [AllowAny]
+
     def post(self, request):
-        data = JSONParser().parse(request)
-        serializer = FarmerRegistrationSerializer(data=request.data)
+        serializer = FarmerRegistrationSerializer(data=request.data)  # DRF automatically parses the data
         if serializer.is_valid():
             serializer.save()  # Save farmer information to the database
             return Response({"message": "Farmer registered successfully"}, status=status.HTTP_201_CREATED)
