@@ -33,14 +33,30 @@ USE_TZ = True
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['ec2-34-241-100-105.eu-west-1.compute.amazonaws.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ec2-3-252-86-187.eu-west-1.compute.amazonaws.com', 'localhost', '127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+CORS_ALLOW_ORIGIN_REGEX = r".*"
 
 
-
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-requested-with',
+    'accept',
+    'origin',
+    'x-csrftoken',
+]
 
 # Application definition
 
@@ -59,6 +75,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,7 +83,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'farmers.urls'
@@ -76,7 +92,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, '/templates')],
         'APP_DIRS': True,
-        'OPTIONS': {
+       'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -95,7 +111,7 @@ WSGI_APPLICATION = 'farmers.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'FarmerMarket',
         'USER': 'admin',
         'PASSWORD': 'Madina2005!',
@@ -133,8 +149,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'home/ubuntu/SWE-project-backend/farmers/staticfiles'
-
+STATIC_ROOT = "/home/ubuntu/SWE-project-backend/farmers/staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 REST_FRAMEWORK = {
