@@ -5,7 +5,7 @@ This repository contains the backend implementation for our Software Engineering
 
 Mobile app repository: https://github.com/Aisakhunova/SWE.git
 
-[![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)]([https://www.youtube.com/watch?v=ek1j272iAmc](https://youtu.be/IwDH38FfYmw))
+([gifyoutube.com](https://www.youtube.com/watch?v=ek1j272iAmc))
 
 
 
