@@ -3,7 +3,7 @@
 
 This repository contains the backend implementation for our Software Engineering project. 
 
-Flutter app repository: https://github.com/Aisakhunova/SWE.git
+Mobile app repository: https://github.com/Aisakhunova/SWE.git
 
 ## 🚀 Technologies Used
 
