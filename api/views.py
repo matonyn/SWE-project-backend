@@ -38,14 +38,33 @@ class ProductCreateView(APIView):
     permission_classes = [AllowAny] 
 
     def post(self, request):
-        data = request.data
-        serializer = ProductSerializer(data=data)  
+        # Extract data from the request
+        product_name = request.data.get('product_name')
+        category_name = request.data.get('category')  # Expecting the category name
+        price = request.data.get('price')
+        description = request.data.get('description')
+
+        # Validate and fetch the category instance
+        category_instance = get_object_or_404(Category, name=category_name)
+
+        # Prepare data for the serializer
+        data = {
+            'product_name': product_name,
+            'price': price,
+            'description': description,
+            'category': category_instance.id  # Pass the category ID to the serializer
+        }
+
+        # Use serializer to validate and save the data
+        serializer = ProductSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        # Return validation errors if any
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
+    
 class ProductUpdateView(APIView):
     permission_classes = [AllowAny]
     
